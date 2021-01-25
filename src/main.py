@@ -23,3 +23,6 @@ def make_report_for_olympiad(dir_name):
 if __name__ == '__main__':
     make_report_for_olympiad('math')
     # make_report_for_olympiad('bio')
+
+    # make_report_for_olympiad('1211')
+    # make_report_for_olympiad('1259')

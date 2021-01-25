@@ -47,6 +47,25 @@ def make_value_for_each_task_number_block(f, data, color_on):
     f.write('</table>')
 
 
+def make_scores_for_each_task_number_block(f, data):
+    f.write('<table><tr><th>task</th>')
+    titles = list(data.keys())
+    for title in titles:
+        f.write('<th>%s</th>' % title)
+    f.write('</tr>')
+
+    title0 = titles[0]
+
+    for num, val in data[title0].items():
+        f.write('<tr>')
+        f.write('<th>%s</th>' % num)
+        f.write('<td>%s</td>' % val)
+        for title in titles[1:]:
+            f.write('<td>%s</td>' % data[title][num])
+        f.write('</tr>')
+    f.write('</table>')
+
+
 def make_report(results_dir, out_path, report_title=''):
     f = open(out_path, 'wt', encoding='utf-8')
     f.write('<html><head><meta charset="utf-8">')
@@ -69,6 +88,8 @@ def make_report(results_dir, out_path, report_title=''):
                     make_value_for_each_task_block(f, data['data'], color_on)
                 elif data.get('data_type') == 'value_for_each_task_number':
                     make_value_for_each_task_number_block(f, data['data'], color_on)
+                elif data.get('data_type') == 'scores_for_each_task_number':
+                    make_scores_for_each_task_number_block(f, data['data'])
     f.write('</body>')
     f.write('</html>')
 
